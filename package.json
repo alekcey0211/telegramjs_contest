@@ -4,9 +4,10 @@
   "description": "My webpack project",
   "main": "app.js",
   "scripts": {
-    "start": "nodemone ./bin/www",
-    "buildPack": "webpack",
-    "startPack": "webpack --watch"
+    "start": "node ./bin/www",
+    "serve": "nodemon ./bin/www",
+    "pack-build": "webpack",
+    "pack-serve": "webpack --watch"
   },
   "repository": {
     "type": "git",

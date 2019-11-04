@@ -1,15 +1,19 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Welcome to telegram contest app!
 
-This project has been created using **webpack scaffold**, you can now run
-
-```
-npm run build
-```
-
-or
+This app has been created for telegram contest, you can now run at http://localhost:3000/
 
 ```
-yarn build
+npm run start
 ```
 
-to bundle your application
+Before start install all dependencies
+
+```
+npm install
+```
+
+This app use webpack for generate js and css file
+
+```
+npm run pack-build
+```
