@@ -1,0 +1,1 @@
+console.log('this is class1.js');
