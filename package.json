@@ -4,10 +4,12 @@
   "description": "My webpack project",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "serve": "nodemon ./bin/www",
+    "start": "node app.js",
+    "serve": "nodemon app.js",
     "pack-build": "webpack",
-    "pack-serve": "webpack --watch"
+    "pack-serve": "webpack --watch",
+    "test": "webpack && node app.js"
+
   },
   "repository": {
     "type": "git",
