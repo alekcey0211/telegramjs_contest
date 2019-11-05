@@ -9,7 +9,6 @@
     "pack-build": "webpack",
     "pack-serve": "webpack --watch",
     "test": "webpack && node app.js"
-
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,8 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "morgan": "~1.9.1",
-    "node-sass-middleware": "0.11.0"
+    "node-sass-middleware": "0.11.0",
+    "tdweb": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

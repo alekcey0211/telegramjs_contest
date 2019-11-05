@@ -1,3 +1,30 @@
+*:focus {
+    outline: none;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color: #000;
+    background: 0 0;
+    font: 15px/20px $base-font, sans-serif;
+    overflow: hidden;
+}
+
 main {
     max-width: $app-max-width;
     margin: 0 auto;
