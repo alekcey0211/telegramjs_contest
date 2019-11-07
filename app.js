@@ -4,7 +4,7 @@ var path = require('path');
 // var logger = require('morgan');
 
 // var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+// var tlRouter = require('./service/TLClient');
 
 var app = express();
 
@@ -18,7 +18,7 @@ app.set('port', port);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+// app.use('/tl', tlRouter);
 
 app.listen(3000, function () {
   console.log(`App listening on http://localhost:${port}`);

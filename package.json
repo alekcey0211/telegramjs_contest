@@ -25,11 +25,18 @@
   },
   "homepage": "https://github.com/alekcey0211/telegramjs_contest#readme",
   "dependencies": {
+    "autoprefixer": "^9.7.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "easy-telegram-mtproto": "^1.0.4",
+    "escape-regex": "^1.0.7",
     "express": "~4.16.1",
+    "fs": "0.0.1-security",
+    "messaging-api-telegram": "^0.8.2",
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0",
+    "postcss-loader": "^3.0.0",
+    "readline": "^1.3.0",
     "tdweb": "^1.5.0"
   },
   "devDependencies": {
@@ -40,11 +47,14 @@
     "css-loader": "^3.2.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack-webworker-loader": "^1.0.0",
+    "worker-loader": "^2.0.0"
   }
 }
