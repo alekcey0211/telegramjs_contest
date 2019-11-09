@@ -34,6 +34,10 @@ export function getBrowser() {
 	return browser_name;
 }
 
+/**
+ * Функция для проверки правильности ввода номера телефона
+ * @param {*} phoneNumber номер телефона
+ */
 export function isValidPhoneNumber(phoneNumber) {
 	if (!phoneNumber) return false;
 
@@ -49,26 +53,30 @@ export function isValidPhoneNumber(phoneNumber) {
 }
 
 export function setCursorPosition(pos, elem) {
-  elem.focus();
-  if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
-  else if (elem.createTextRange) {
-    var range = elem.createTextRange();
-    range.collapse(true);
-    range.moveEnd('character', pos);
-    range.moveStart('character', pos);
-    range.select();
-  }
+	elem.focus();
+	if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
+	else if (elem.createTextRange) {
+		let range = elem.createTextRange();
+		range.collapse(true);
+		range.moveEnd('character', pos);
+		range.moveStart('character', pos);
+		range.select();
+	}
 }
 
-export function mask(event) {
-	var matrix = `${telIndex} (___) ___ ____`,
+export function mask(event, telCode) {
+	let matrix = `${telCode} (___) ___ __ __`,
 		i = 0,
 		def = matrix.replace(/\D/g, ''),
-		val = this.value.replace(/\D/g, '');
+		val = event.target.value.replace(/\D/g, '');
 	if (def.length >= val.length) val = def;
-	this.value = matrix.replace(/./g, function(a) {
+	event.target.value = matrix.replace(/./g, function(a) {
 		return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
 	});
 	if (event.type == 'blur') {
-	} else setCursorPosition(this.value.length, this);
+	} else setCursorPosition(event.target.value.length, event.target);
+}
+
+export function parseTelephoneNumber(number) {
+	return number.replace(/\s/g, '').replace(/\(/g,'').replace(/\)/g,'')
 }

@@ -23,23 +23,27 @@
         <img class="login-logo" src="./assets/img/logo.png" alt="Telegram">
         <h2 class="login-title">Sign in to Telegram</h2>
         <p class="login-text">Please confirm your country and enter your phone number</p>
-        <div class="login-select">
-          <div class="login-input">
-            <input type="text" placeholder="Country">
+        <div class="tl-select login-select">
+          <div class="inner tl-input empty">
+            <input type="text" readonly>
+            <label class="placeholder">Country</label>
           </div>
-          <div class="login-select__country-select">
+          <div class="option">
             <ul></ul>
-            <select></select>
           </div>
         </div>
-        <div class="login-input">
-          <input type="tel" placeholder="Phone Number">
+        <div class="tl-input login-input empty">
+          <input type="tel">
+          <label class="placeholder">Phone Number</label>
         </div>
-        <label class="login-checkbox">
+        <label class="tl-checkbox login-checkbox">
           Keep me signed in
           <input type="checkbox">
           <span class="checkmark"></span>
         </label>
+        <div class="login-button">
+          <button class="tl-full-button">Next</button>
+        </div>
       </div>
     </section>
     <aside id="right-sidebar">

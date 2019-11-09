@@ -7,7 +7,7 @@
     "start": "node app.js",
     "serve": "nodemon app.js",
     "pack-build": "webpack",
-    "pack-serve": "webpack --watch",
+    "pack-serve": "webpack --watch --mode=development",
     "test": "webpack && node app.js"
   },
   "repository": {

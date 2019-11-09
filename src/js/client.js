@@ -1,23 +1,24 @@
 import TdClient from './tdweb.js';
-import apiConfig from './api-tlg';
-import { getOSName, getBrowser } from './utils';
+import { apiConfig } from './api-tlg';
+import { getOSName, getBrowser, isValidPhoneNumber } from './utils';
 
-class Client {
+export class Client {
 	constructor(options) {
 		this.client = new TdClient(options);
+		this.config = apiConfig;
 	}
 
 	send(request) {
-		this.client
+		return this.client
 			.send(request)
-			.then((result) => {
-				console.log('receive result', result);
-				return result;
-			})
-			.catch((error) => {
-				console.error('catch error', error);
-				throw error;
-			});
+			// .then((result) => {
+			// 	console.log('receive result', result);
+			// 	return result;
+			// })
+			// .catch((error) => {
+			// 	console.error('catch error', error);
+			// 	throw error;
+			// });
 	}
 
 	checkDatabaseEncryptionKey() {
@@ -31,7 +32,7 @@ class Client {
 			'@type': 'setTdlibParameters',
 			parameters: {
 				'@type': 'tdParameters',
-				use_test_dc: useTestDC,
+				use_test_dc: false,
 				api_id: apiConfig.id,
 				api_hash: apiConfig.hash,
 				system_language_code: navigator.language || 'en',
@@ -48,9 +49,13 @@ class Client {
 	}
 
 	setAuthenticationPhoneNumber(phone) {
-		this.send({
-			'@type': 'setAuthenticationPhoneNumber',
-			phone_number: phone
-		});
+		if (isValidPhoneNumber(phone)) {
+			return this.send({
+				'@type': 'setAuthenticationPhoneNumber',
+				phone_number: phone
+			});
+		} else {
+			console.error(`Telephone number ${phone} is not valid`);
+		}
 	}
 }
