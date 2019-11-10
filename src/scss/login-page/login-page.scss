@@ -29,7 +29,7 @@
 .login-text {
 	text-align: center;
 	margin: 0 38px 42px;
-	color: $dark-gray;
+	color: $tl-dark-gray;
 }
 
 .tl-select {
@@ -44,7 +44,7 @@
     top: 16px;
 		width: 10px;
     height: 10px;
-		border: solid $dark-gray;
+		border: solid $tl-dark-gray;
 		border-width: 0 2px 2px 0;
 		border-radius: 0px 3px 0px 3px;
 		transform: rotate(45deg);
@@ -78,13 +78,13 @@
 		opacity: 0;
 		z-index: -1;
 		transition: all .3s ease;
-		border: 1px solid $gray;
+		border: 1px solid $tl-gray;
 		border-radius: $border-radius;
 		max-height: 200px;
 		position: absolute;
 		background-color: white;
 		overflow-y: scroll;
-		box-shadow: 1px 7px 9px 0px $gray;
+		box-shadow: 1px 7px 9px 0px $tl-gray;
 
 		&::-webkit-scrollbar {
 			width: 0;
@@ -93,19 +93,19 @@
 		& ul li {
 			display: flex;
 			justify-content: space-between;
-			padding: 5px 10px;
+			padding: 10px 10px;
 
 			& * {
 				pointer-events: none;
 			}
 
 			& .code {
-				color: $dark-gray;
+				color: $tl-dark-gray;
 				font-size: 14px;
 			}
 
 			&:hover {
-				background-color: $light-gray;
+				background-color: $tl-light-gray;
 			}
 		}
 	}
@@ -140,10 +140,17 @@
 
 	.placeholder {
 		position: absolute;
-    color: #ccc;
+    color: $tl-gray;
     transform: translate(0, -50%);
 		left: 13px;
 		transition: all .3s ease;
+    white-space: nowrap;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	&:not(.empty).focused .placeholder {
+		color: $tl-blue;
 	}
 
 	&:not(.empty) .placeholder {
@@ -151,10 +158,12 @@
 		font-size: 12px;
 		background-color: white;
 		padding: 0 5px;
+		color: $tl-dark-gray;
 	}
 
 	&.empty .placeholder {
 		top: 50%;
+		width: 85%;
 	}
 }
 

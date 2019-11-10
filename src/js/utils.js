@@ -64,8 +64,9 @@ export function setCursorPosition(pos, elem) {
 	}
 }
 
-export function mask(event, telCode) {
-	let matrix = `${telCode} (___) ___ __ __`,
+export function mask(event) {
+	const telCode = event.target.getAttribute('tel-code');
+	let matrix = `${telCode} ____________________`,
 		i = 0,
 		def = matrix.replace(/\D/g, ''),
 		val = event.target.value.replace(/\D/g, '');

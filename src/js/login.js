@@ -2,27 +2,44 @@ import { getCountriesList } from './country-list.js';
 import { setCursorPosition, mask, isValidPhoneNumber, parseTelephoneNumber } from './utils';
 import { Client } from './client';
 import { options } from './api-tlg';
+import { LoginPage } from './login-page'
 
-let telCode = '+1';
+// let telCode = '+1';
+
 // const client = new Client(options);
 // client.setTdlibParameters();
 // client.checkDatabaseEncryptionKey();
+
+const mainPage = document.querySelector('main');
+mainPage.innerHTML = new LoginPage().render();
 
 /**
  * telegram input
  */
 const loginInputContainer = document.querySelector('.login-input');
 const loginInput = loginInputContainer.querySelector('input[type="tel"]');
-loginInput.addEventListener('input',(e) => onTelInput(e, telCode),false);
-loginInput.addEventListener('focus', (e) => onTelInput(e, telCode), false);
-loginInput.addEventListener('blur', (e) => onTelInput(e, telCode), false);
+loginInput.setAttribute('tel-code', '+1');
 
-function onTelInput(e, telCode) {
-	mask(e, telCode);
+const tlInputs = document.querySelectorAll('.tl-input input');
+tlInputs.forEach((input) => {
+	input.addEventListener('input',(e) => onInput(e),false);
+	input.addEventListener('focus', (e) => onInput(e), false);
+	input.addEventListener('blur', (e) => onInput(e), false);
+})
+function onInput(e) {
+	if (e.target.type == 'tel') {
+		mask(e);
+	}
+	if (e.type == 'focus') {
+		e.target.parentElement.classList.add('focused');
+	}
+	if (e.type == 'blur') {
+		e.target.parentElement.classList.remove('focused');
+	}
 	if (e.target.value != '') {
-		loginInputContainer.classList.remove('empty');
+		e.target.parentElement.classList.remove('empty');
 	} else {
-		loginInputContainer.classList.add('empty');
+		e.target.parentElement.classList.add('empty');
 	}
 }
 /**
@@ -52,20 +69,27 @@ loginSelectInnerInput.onblur = () => {
 loginSelectOptionListItem.forEach((item) => {
 	item.onmouseover = (e) => {
 		const name = e.target.querySelector('.name');
-		loginSelectInnerPlaceholder.textContent = name.textContent;
+		if (loginSelectInnerPlaceholder) {
+			loginSelectInnerPlaceholder.textContent = name.textContent;
+		}
 	};
 	item.onmouseout = (e) => {
-		loginSelectInnerPlaceholder.textContent = 'Country';
+		if (loginSelectInnerPlaceholder) {
+			loginSelectInnerPlaceholder.textContent = 'Country';
+		}
 	};
 	item.onclick = (e) => {
 		const name = e.target.querySelector('.name');
 		const code = e.target.querySelector('.code');
-		loginSelectInnerPlaceholder.textContent = 'Country';
+		if (loginSelectInnerPlaceholder) {
+			loginSelectInnerPlaceholder.textContent = 'Country';
+		}
 		loginSelectInnerInput.value = name.textContent;
 		loginSelectInner.classList.remove('empty');
-		telCode = code.textContent;
+		const telCode = code.textContent;
 		loginInput.value = telCode;
-		loginInputContainer.classList.remove('empty');
+		loginInput.setAttribute('tel-code', telCode);
+		loginInput.parentElement.classList.remove('empty');
 	};
 });
 /**
