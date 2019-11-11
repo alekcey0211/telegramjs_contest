@@ -1,14 +1,16 @@
-.login-section {
-	height: 100vh;
+.code-section {
+  height: 100vh;
 	display: flex;
-	padding-top: 96px;
+  padding-top: 93px;
+  
+  padding-top: 96px;
 
 	@media (max-width: $screen-sm) {
 		padding-top: 46px;
 	}
 }
 
-.login-container {
+.code-container {
 	margin: 0 auto;
 	max-width: 328px;
 	display: flex;
@@ -16,40 +18,28 @@
 	align-items: center;
 }
 
-.login-logo {
+.code-monkey {
 	width: 154px;
 	height: auto;
 	margin: 0 auto;
 	margin-bottom: 43px;
 }
 
-.login-title {
+.code-telephone {
 	text-align: center;
 	font-size: 29px;
 	margin-bottom: 14px;
-	line-height: 1;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+
+  .number {
+    margin-right: 10px;
+  }
 }
 
-.login-text {
+.code-text {
 	text-align: center;
 	margin: 0 38px 42px;
 	color: $tl-dark-gray;
-}
-
-.login-checkbox {
-	margin-bottom: 20px;
-	margin-left: 16px;
-}
-
-.login-select {
-	margin-bottom: 10px;
-}
-
-.login-input {
-	margin-bottom: 22px;
-}
-
-.login-button {
-	height: 50px;
-	width: 100%;
 }

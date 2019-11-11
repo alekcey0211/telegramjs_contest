@@ -1,0 +1,60 @@
+.tl-checkbox {
+	align-self: flex-start;
+	display: block;
+	position: relative;
+	padding-left: 48px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+
+	label {
+		margin-left: 32px;
+	}
+
+	.checkmark {
+		position: absolute;
+		top: 2px;
+		left: 0;
+		height: 17px;
+		width: 17px;
+		border: 2px solid #ccc;
+		border-radius: 3px;
+
+		&:after {
+			content: "";
+			position: absolute;
+			display: none;
+			left: 3px;
+			top: -2px;
+			width: 4px;
+			height: 11px;
+			border: solid white;
+			border-width: 0 3px 3px 0;
+			border-radius: 0px 3px 0px 3px;
+			transform: rotate(45deg);
+		}
+	}
+
+	input:checked ~ .checkmark {
+		background-color: $tl-blue;
+		border-color: $tl-blue;
+
+		&:after {
+			border-color: white;
+		}
+	}
+
+	input:checked ~ .checkmark:after {
+		display: block;
+	}
+}

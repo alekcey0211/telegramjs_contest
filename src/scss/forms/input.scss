@@ -1,0 +1,54 @@
+.tl-input {
+	width: 100%;
+	position: relative;
+
+	input {
+		width: 100%;
+		border: 1px solid #ccc;
+		border-radius: $border-radius;
+		padding: 14px 12px;
+		transition: border-color .3s ease;
+		height: 50px;
+
+		&:hover {
+			border-color: #000;
+		}
+
+		&:focus {
+			border-color: $tl-blue;
+			border-width: 2px;
+		}
+
+		&::placeholder {
+			color: #ccc;
+		}
+	}
+
+	.placeholder {
+		position: absolute;
+    color: $tl-gray;
+    transform: translate(0, -50%);
+		left: 15px;
+		transition: all .3s ease;
+    white-space: nowrap;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	&:not(.empty).focused .placeholder {
+		color: $tl-blue;
+	}
+
+	&:not(.empty) .placeholder {
+		top: 0;
+		font-size: 12px;
+		background-color: white;
+		padding: 0 5px;
+		color: $tl-dark-gray;
+	}
+
+	&.empty .placeholder {
+		top: 50%;
+		width: 85%;
+	}
+}

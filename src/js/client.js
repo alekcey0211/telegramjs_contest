@@ -1,9 +1,9 @@
 import TdClient from './tdweb.js';
-import { apiConfig } from './api-tlg';
+import { apiConfig, options } from './api-tlg';
 import { getOSName, getBrowser, isValidPhoneNumber } from './utils';
 
 export class Client {
-	constructor(options) {
+	constructor() {
 		this.client = new TdClient(options);
 		this.config = apiConfig;
 	}

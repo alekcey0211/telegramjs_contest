@@ -1,10 +1,3 @@
-   /*
- *  Copyright (c) 2018-present, Evgeny Nadymov
- *
- * This source code is licensed under the GPL v.3.0 license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 export const ANIMATION_FRAME_DURATION_MS = 40;
 export const ANIMATION_DURATION_100MS = 100;
 export const ANIMATION_DURATION_200MS = 200;
@@ -76,6 +69,5 @@ export const VERBOSITY_JS_MIN = 0;
 export const VERBOSITY_MAX = 20;
 export const VERBOSITY_MIN = 0;
 export const USERNAME_LENGTH_MIN = 5;
-export const REPLACE_PREFIX = '/telegram-react';
 export const WASM_FILE_NAME = 'b4b0d61282108a31908dd6b2dbd7067b.wasm';
 export const WASM_FILE_HASH = 'b4b0d61282108a31908dd6b2dbd7067b';

@@ -25,6 +25,12 @@ body {
     overflow: hidden;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 main {
     max-width: $app-max-width;
     margin: 0 auto;
@@ -33,4 +39,8 @@ main {
 
 main section {
     flex-grow: 1;
+}
+
+.hide {
+    display: none !important;
 }

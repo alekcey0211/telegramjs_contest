@@ -328,6 +328,11 @@ body {
   font: 15px/20px "Roboto", sans-serif;
   overflow: hidden; }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
 main {
   max-width: 1202px;
   margin: 0 auto;
@@ -338,43 +343,126 @@ main section {
   -webkit-box-flex: 1;
           flex-grow: 1; }
 
-.login-section {
-  height: 100vh;
-  display: -webkit-box;
-  display: flex;
-  padding-top: 93px; }
+.hide {
+  display: none !important; }
 
-.login-container {
-  margin: 0 auto;
-  max-width: 328px;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-flow: column;
-  -webkit-box-align: center;
-          align-items: center; }
-
-.login-logo {
-  width: 154px;
-  height: auto;
-  margin: 0 auto;
-  margin-bottom: 43px; }
-
-.login-title {
+.tl-button {
+  padding: 16px;
   text-align: center;
-  font-size: 29px;
-  margin-bottom: 14px;
-  line-height: 1; }
+  width: 100%;
+  height: 100%;
+  max-height: 50px;
+  border-radius: 9px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: block;
+  text-decoration: none; }
 
-.login-text {
-  text-align: center;
-  margin: 0 38px 42px;
-  color: #A8AFB3; }
+.tl-full-button {
+  background-color: #4EA4F6;
+  border: none;
+  color: white; }
+  .tl-full-button:hover {
+    background-color: #4797E2; }
+
+.tl-checkbox {
+  align-self: flex-start;
+  display: block;
+  position: relative;
+  padding-left: 48px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .tl-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  .tl-checkbox label {
+    margin-left: 32px; }
+  .tl-checkbox .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    border: 2px solid #ccc;
+    border-radius: 3px; }
+    .tl-checkbox .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 3px;
+      top: -2px;
+      width: 4px;
+      height: 11px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      border-radius: 0px 3px 0px 3px;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
+  .tl-checkbox input:checked ~ .checkmark {
+    background-color: #4EA4F6;
+    border-color: #4EA4F6; }
+    .tl-checkbox input:checked ~ .checkmark:after {
+      border-color: white; }
+  .tl-checkbox input:checked ~ .checkmark:after {
+    display: block; }
+
+.tl-input {
+  width: 100%;
+  position: relative; }
+  .tl-input input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    padding: 14px 12px;
+    -webkit-transition: border-color .3s ease;
+    transition: border-color .3s ease;
+    height: 50px; }
+    .tl-input input:hover {
+      border-color: #000; }
+    .tl-input input:focus {
+      border-color: #4EA4F6;
+      border-width: 2px; }
+    .tl-input input::-webkit-input-placeholder {
+      color: #ccc; }
+    .tl-input input::-moz-placeholder {
+      color: #ccc; }
+    .tl-input input:-ms-input-placeholder {
+      color: #ccc; }
+    .tl-input input::-ms-input-placeholder {
+      color: #ccc; }
+    .tl-input input::placeholder {
+      color: #ccc; }
+  .tl-input .placeholder {
+    position: absolute;
+    color: #E1E3E6;
+    -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+    left: 15px;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    pointer-events: none; }
+  .tl-input:not(.empty).focused .placeholder {
+    color: #4EA4F6; }
+  .tl-input:not(.empty) .placeholder {
+    top: 0;
+    font-size: 12px;
+    background-color: white;
+    padding: 0 5px;
+    color: #A8AFB3; }
+  .tl-input.empty .placeholder {
+    top: 50%;
+    width: 85%; }
 
 .tl-select {
   width: 100%;
-  margin-bottom: 10px;
   position: relative; }
   .tl-select::after {
     content: "";
@@ -432,121 +520,98 @@ main section {
       .tl-select .option ul li:hover {
         background-color: #f4f4f5; }
 
-.tl-input {
-  width: 100%;
-  margin-bottom: 22px;
-  position: relative; }
-  .tl-input input {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 9px;
-    padding: 14px 12px;
-    -webkit-transition: border-color .3s ease;
-    transition: border-color .3s ease;
-    height: 50px; }
-    .tl-input input:hover {
-      border-color: #000; }
-    .tl-input input:focus {
-      border-color: #4EA4F6;
-      border-width: 2px; }
-    .tl-input input::-webkit-input-placeholder {
-      color: #ccc; }
-    .tl-input input::-moz-placeholder {
-      color: #ccc; }
-    .tl-input input:-ms-input-placeholder {
-      color: #ccc; }
-    .tl-input input::-ms-input-placeholder {
-      color: #ccc; }
-    .tl-input input::placeholder {
-      color: #ccc; }
-  .tl-input .placeholder {
-    position: absolute;
-    color: #E1E3E6;
-    -webkit-transform: translate(0, -50%);
-            transform: translate(0, -50%);
-    left: 13px;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    pointer-events: none; }
-  .tl-input:not(.empty).focused .placeholder {
-    color: #4EA4F6; }
-  .tl-input:not(.empty) .placeholder {
-    top: 0;
-    font-size: 12px;
-    background-color: white;
-    padding: 0 5px;
-    color: #A8AFB3; }
-  .tl-input.empty .placeholder {
-    top: 50%;
-    width: 85%; }
+.login-section {
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  padding-top: 96px; }
+  @media (max-width: 576px) {
+    .login-section {
+      padding-top: 46px; } }
+
+.login-container {
+  margin: 0 auto;
+  max-width: 328px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.login-logo {
+  width: 154px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 43px; }
+
+.login-title {
+  text-align: center;
+  font-size: 29px;
+  margin-bottom: 14px;
+  line-height: 1; }
+
+.login-text {
+  text-align: center;
+  margin: 0 38px 42px;
+  color: #A8AFB3; }
 
 .login-checkbox {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-left: 16px; }
 
-.tl-checkbox {
-  align-self: flex-start;
-  display: block;
-  position: relative;
-  padding-left: 48px;
-  margin-left: 16px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
-  .tl-checkbox input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0; }
-  .tl-checkbox label {
-    margin-left: 32px; }
-  .tl-checkbox .checkmark {
-    position: absolute;
-    top: 2px;
-    left: 0;
-    height: 17px;
-    width: 17px;
-    border: 2px solid #ccc;
-    border-radius: 3px; }
-    .tl-checkbox .checkmark:after {
-      content: "";
-      position: absolute;
-      display: none;
-      left: 3px;
-      top: -2px;
-      width: 4px;
-      height: 11px;
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      border-radius: 0px 3px 0px 3px;
-      -webkit-transform: rotate(45deg);
-              transform: rotate(45deg); }
-  .tl-checkbox input:checked ~ .checkmark {
-    background-color: #4EA4F6;
-    border-color: #4EA4F6; }
-    .tl-checkbox input:checked ~ .checkmark:after {
-      border-color: white; }
-  .tl-checkbox input:checked ~ .checkmark:after {
-    display: block; }
+.login-select {
+  margin-bottom: 10px; }
+
+.login-input {
+  margin-bottom: 22px; }
 
 .login-button {
   height: 50px;
   width: 100%; }
 
-.tl-full-button {
-  background-color: #4EA4F6;
-  width: 100%;
-  height: 100%;
-  max-height: 50px;
-  border: none;
-  border-radius: 9px;
-  color: white;
-  text-transform: uppercase;
-  cursor: pointer; }
-  .tl-full-button:hover {
-    background-color: #4797E2; }
+.code-section {
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  padding-top: 93px;
+  padding-top: 96px; }
+  @media (max-width: 576px) {
+    .code-section {
+      padding-top: 46px; } }
+
+.code-container {
+  margin: 0 auto;
+  max-width: 328px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.code-monkey {
+  width: 154px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 43px; }
+
+.code-telephone {
+  text-align: center;
+  font-size: 29px;
+  margin-bottom: 14px;
+  line-height: 1;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center; }
+  .code-telephone .number {
+    margin-right: 10px; }
+
+.code-text {
+  text-align: center;
+  margin: 0 38px 42px;
+  color: #A8AFB3; }
 

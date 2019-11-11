@@ -1,0 +1,22 @@
+.tl-button {
+	padding: 16px;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	max-height: 50px;
+	border-radius: $border-radius;
+	text-transform: uppercase;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+}
+
+.tl-full-button {
+	background-color: $tl-blue;
+	border: none;
+	color: white;
+
+	&:hover {
+		background-color: $tl-dark-blue;
+	}
+}
