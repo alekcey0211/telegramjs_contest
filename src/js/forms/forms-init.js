@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', initForm);
 window.addEventListener('onRender', initForm);
 
 function initForm() {
-	console.log('hashchange init form');
 	const tlInputs = document.querySelectorAll('.tl-input input');
 	tlInputs.forEach((input) => {
 		input.addEventListener('input', (e) => onInput(e), false);

@@ -1,8 +1,5 @@
-import { Component } from './component';
 import { getCountriesList } from './country-list.js';
-import { setCursorPosition, mask, isValidPhoneNumber, parseTelephoneNumber } from './utils';
-import { Client } from './client';
-import { options } from './api-tlg';
+import { isValidPhoneNumber, parseTelephoneNumber } from './utils';
 
 export class LoginPage {
 	init(container) {
@@ -41,11 +38,11 @@ export class LoginPage {
 		if (loginButtonContainer) {
 			const loginButton = loginButtonContainer.querySelector('.tl-button');
 			loginButton.onclick = (e) => {
+				client.inputPhone = loginInput.value;
 				const phoneNumber = parseTelephoneNumber(loginInput.value);
 				client
 					.setAuthenticationPhoneNumber(phoneNumber)
 					.then((result) => {
-						console.log(client);
 						console.log('receive result', result);
 						return result;
 					})

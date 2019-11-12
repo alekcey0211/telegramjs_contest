@@ -1,33 +1,32 @@
-// (function() {
 import { Routing } from './routing';
-import { Client } from './client';
 
-const app = {
-	routes: new Routing(),
-	default: 'the-default-view',
-	routeChange: () => {
-		app.routeID = location.hash.slice(1);
-		app.route = app.routes.route[app.routeID];
-		app.routeElem = document.getElementById(app.routeID);
-		app.route.rendered(document.querySelector('main'));
-	},
-	init: function() {
-		window.addEventListener('hashchange', function() {
-			app.routeChange();
-		});
+class App {
+	constructor() {
+		this.routes = new Routing();
+		this.startPage = 'init-client';
+		this.init();
+	}
+
+	routeChange() {
+		console.log(typeof client);
+		if (typeof client === 'undefined') {
+			window.location.hash = '#init-client';
+		}
+		this.routeID = location.hash.slice(1);
+		this.route = this.routes.route[this.routeID];
+		this.routeElem = document.getElementById(this.routeID);
+		this.route.rendered(document.querySelector('main'));
+	}
+
+	init() {
+		window.addEventListener('hashchange', (e) => this.routeChange());
 		if (!window.location.hash) {
-			window.location.hash = app.default;
+			window.location.hash = this.default;
 		} else {
-			app.routeChange();
+			this.routeChange();
 		}
 	}
 };
-window.app = app;
-// })();
 
-app.init();
+window.app = new App();
 
-const client = new Client();
-client.setTdlibParameters();
-client.checkDatabaseEncryptionKey();
-window.client = client;

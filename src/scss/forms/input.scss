@@ -4,11 +4,12 @@
 
 	input {
 		width: 100%;
-		border: 1px solid #ccc;
+		border: 1px solid $tl-gray;
 		border-radius: $border-radius;
 		padding: 14px 12px;
 		transition: border-color .3s ease;
 		height: 50px;
+		caret-color : $tl-blue;
 
 		&:hover {
 			border-color: #000;
@@ -20,27 +21,25 @@
 		}
 
 		&::placeholder {
-			color: #ccc;
+			color: $tl-gray;
 		}
 	}
 
 	.placeholder {
 		position: absolute;
-    color: $tl-gray;
     transform: translate(0, -50%);
 		left: 15px;
-		transition: all .3s ease;
+		transition: all .3s ease, background-color .1s ease .2s;
     white-space: nowrap;
-		overflow: hidden;
 		pointer-events: none;
+		line-height: 4px;
 	}
 
 	&:not(.empty).focused .placeholder {
 		color: $tl-blue;
 	}
-
 	&:not(.empty) .placeholder {
-		top: 0;
+		top: 1px;
 		font-size: 12px;
 		background-color: white;
 		padding: 0 5px;
@@ -50,5 +49,6 @@
 	&.empty .placeholder {
 		top: 50%;
 		width: 85%;
+		color: $tl-gray;
 	}
 }
