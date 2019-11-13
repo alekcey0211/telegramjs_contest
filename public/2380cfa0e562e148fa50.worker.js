@@ -3828,6 +3828,7 @@ var logger_Logger =
 /*#__PURE__*/
 function () {
   function Logger() {
+
     classCallCheck_default()(this, Logger);
 
     this.setVerbosity('WARNING');

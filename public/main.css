@@ -314,19 +314,15 @@ template {
   padding: 0; }
 
 html {
-  height: 100%;
-  width: 100%;
-  overflow: hidden; }
+  width: 100%; }
 
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
   color: #000;
   background: 0 0;
-  font: 15px/20px "Roboto", sans-serif;
-  overflow: hidden; }
+  font: 15px/20px "Roboto", sans-serif; }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -520,6 +516,12 @@ main section {
         font-size: 14px; }
       .tl-select .option ul li:hover {
         background-color: #f4f4f5; }
+
+.out-console-block {
+  padding: 12px; }
+  .out-console-block p {
+    padding: 10px 0;
+    border-bottom: 1px solid black; }
 
 .login-section {
   height: 100vh;

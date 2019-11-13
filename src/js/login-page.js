@@ -148,7 +148,7 @@ export class LoginPage {
             <a href="#confirm-code" class="tl-button tl-full-button">Next</a>
           </div>
         </div>
-      </section>
+			</section>
     `;
 	}
 

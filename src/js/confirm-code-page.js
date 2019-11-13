@@ -1,17 +1,7 @@
 export class ConfirmCodePage {
-  // set title(title) {
-  //   this.titleValue = title;
-  //   this.render();
-  // }
-
-  // get title() {
-  //   return this.titleValue;
-  // }
 
   init(container) {
     this.container = container;
-    // this.titleValue = this.container.dataset.title;
-    // this.title = "логин";
     this.render();
   }
 
@@ -39,11 +29,6 @@ export class ConfirmCodePage {
 					});
       }
     })
-    // this.clickMeButton = this.container.querySelector('.click-me');
-    // new TlButton(this.pageElement);
-    // this.container.addEventListener('click-me-was-clicked', () => console.log('clicked'))
-
-    // this.addEventListeners();
   }
 
   static markup() {
@@ -65,27 +50,7 @@ export class ConfirmCodePage {
     `;
   }
 
-  // addEventListeners() {
-  //   this.clickMeButton.addEventListener('click', () =>
-  //     this.container.dispatchEvent(new CustomEvent('click-me-was-clicked')));
-  // }
-
   constructor(container) {
     this.init(container);
-
-    // if (typeof container.dataset.ref === 'undefined') {
-    //   this.ref = Math.random();
-    //   ConfirmCodePage.refs[this.ref] = this;
-    //   container.dataset.ref = this.ref;
-    //   this.init(container);
-    // } else {
-    //   return ConfirmCodePage.refs[container.dataset.ref];
-    // }
   }
 }
-
-// ConfirmCodePage.refs = {};
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   new ConfirmCodePage(document.getElementById('confirm-code-page'))
-// });

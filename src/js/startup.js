@@ -1,5 +1,21 @@
 import { Routing } from './routing';
 
+/**
+ * Вывод консоли в блок для того, чтобы увидеть консольные сообщения на телефоне 
+ */
+if (typeof console !== undefined) {
+	console.olog = console.log;
+	console.log = (message) => {
+		const outConsoleBlock = document.querySelector('.out-console-block');
+		if (outConsoleBlock) {
+			const p = document.createElement('p');
+			p.textContent = message;
+			outConsoleBlock.appendChild(p);
+		}
+	}
+	console.error = console.debug = console.info = console.warn = console.log;
+}
+
 class App {
 	constructor() {
 		this.routes = new Routing();
@@ -8,7 +24,6 @@ class App {
 	}
 
 	routeChange() {
-		console.log(typeof client);
 		if (typeof client === 'undefined') {
 			window.location.hash = '#init-client';
 		}
@@ -29,4 +44,3 @@ class App {
 };
 
 window.app = new App();
-
