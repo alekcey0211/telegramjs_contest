@@ -9,6 +9,7 @@ export function getOSName() {
 	if (window.navigator.userAgent.indexOf('Mac') !== -1) OSName = 'Mac/iOS';
 	if (window.navigator.userAgent.indexOf('X11') !== -1) OSName = 'UNIX';
 	if (window.navigator.userAgent.indexOf('Linux') !== -1) OSName = 'Linux';
+	if (/iPad|iPhone|iPod/.test(navigator.userAgent)) OSName = 'iOS';
 
 	return OSName;
 }
@@ -19,7 +20,7 @@ export function getBrowser() {
 	let isEdge = !isIE && !!window.StyleMedia;
 	if (navigator.userAgent.indexOf('Chrome') !== -1 && !isEdge) {
 		browser_name = 'Chrome';
-	} else if (navigator.userAgent.indexOf('Safari') !== -1 && !isEdge) {
+	} else if (navigator.userAgent.indexOf('Safari') !== -1 && !isEdge && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
 		browser_name = 'Safari';
 	} else if (navigator.userAgent.indexOf('Firefox') !== -1) {
 		browser_name = 'Firefox';
