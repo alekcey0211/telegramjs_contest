@@ -1,6 +1,6 @@
 export function getOSName() {
 	let OSName = 'Unknown';
-	let OSName = 'iOS';
+	OSName = 'iOS';
 	// if (window.navigator.userAgent.indexOf('Windows NT 10.0') !== -1) OSName = 'Windows 10';
 	// if (window.navigator.userAgent.indexOf('Windows NT 6.2') !== -1) OSName = 'Windows 8';
 	// if (window.navigator.userAgent.indexOf('Windows NT 6.1') !== -1) OSName = 'Windows 7';
@@ -17,7 +17,7 @@ export function getOSName() {
 
 export function getBrowser() {
 	let browser_name = '';
-	let browser_name = 'Safari';
+	browser_name = 'Safari';
 	// let isIE = /*@cc_on!@*/ false || !!document.documentMode;
 	// let isEdge = !isIE && !!window.StyleMedia;
 	// if (navigator.userAgent.indexOf('Chrome') !== -1 && !isEdge) {
