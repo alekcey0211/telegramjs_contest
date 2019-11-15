@@ -457,6 +457,24 @@ main section {
     top: 50%;
     width: 85%;
     color: #E1E3E6; }
+  .tl-input.error input {
+    border-color: #E53935 !important;
+    caret-color: #E53935 !important;
+    border-width: 2px !important; }
+    .tl-input.error input .placeholder {
+      color: #E53935; }
+  .tl-input.correct input {
+    border-color: #26962F !important;
+    caret-color: #26962F !important;
+    border-width: 2px !important; }
+    .tl-input.correct input .placeholder {
+      color: #26962F; }
+  .tl-input .right-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
 
 .tl-select {
   width: 100%;
@@ -617,4 +635,54 @@ main section {
   text-align: center;
   margin: 0 38px 42px;
   color: #A8AFB3; }
+
+.password-section {
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  padding-top: 93px;
+  padding-top: 96px; }
+  @media (max-width: 576px) {
+    .password-section {
+      padding-top: 46px; } }
+
+.password-container {
+  margin: 0 auto;
+  max-width: 328px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.password-monkey {
+  width: 154px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 43px; }
+
+.password-title {
+  text-align: center;
+  font-size: 29px;
+  margin-bottom: 14px;
+  line-height: 1;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-right: 10px; }
+
+.password-text {
+  text-align: center;
+  margin: 0 38px 42px;
+  color: #A8AFB3; }
+
+.password-input {
+  margin-bottom: 10px; }
+
+.password-button {
+  height: 50px;
+  width: 100%; }
 

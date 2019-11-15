@@ -38,6 +38,7 @@
 	&:not(.empty).focused .placeholder {
 		color: $tl-blue;
 	}
+
 	&:not(.empty) .placeholder {
 		top: 1px;
 		font-size: 12px;
@@ -50,5 +51,32 @@
 		top: 50%;
 		width: 85%;
 		color: $tl-gray;
+	}
+
+	&.error input {
+		border-color: $tl-red !important;
+		caret-color: $tl-red !important;
+		border-width: 2px !important;
+
+		.placeholder {
+			color: $tl-red;
+		}
+	}
+
+	&.correct input {
+		border-color: $tl-green !important;
+		caret-color: $tl-green !important;
+		border-width: 2px !important;
+
+		.placeholder {
+			color: $tl-green;
+		}
+	}
+
+	.right-icon {
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		transform: translate(-50%, -50%);
 	}
 }

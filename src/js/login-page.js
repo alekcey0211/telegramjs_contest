@@ -20,12 +20,13 @@ export class LoginPage {
 	}
 
 	render() {
-		this.container.innerHTML = LoginPage.markup(this);
+		this.container.innerHTML = this.markup(this);
 		window.dispatchEvent(new CustomEvent('onRender'));
 
 		// input
 		const loginInputContainer = this.container.querySelector('.login-input');
-    const loginInput = loginInputContainer.querySelector('input[type="tel"]');
+		const loginInput = loginInputContainer.querySelector('input[type="tel"]');
+	
 		if (loginInputContainer) {
 			loginInput.setAttribute('tel-code', '+1');
 			loginInput.addEventListener('input', (e) => {
@@ -53,6 +54,13 @@ export class LoginPage {
 			};
 		}
 
+		loginInput.addEventListener('keyup', (e) => {
+			if (e.code == 'Enter') {
+				if (loginButton) {
+					loginButton.click();
+				}
+			}
+		})
 		// костыль
 		loginInput.addEventListener('input', (e) => {
 			const number = parseTelephoneNumber(e.target.value);
@@ -119,7 +127,7 @@ export class LoginPage {
 		});
 	}
 
-	static markup({phoneNumber}) {
+	markup({phoneNumber}) {
 		return `
       <section class="login-section">
         <div class="login-container">

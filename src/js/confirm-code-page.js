@@ -6,9 +6,9 @@ export class ConfirmCodePage {
   }
 
   render() {
-    this.container.innerHTML = ConfirmCodePage.markup();
-    const codeInput = this.container.querySelector('.code-input');
-    console.log('code render');
+    this.container.innerHTML = this.markup();
+    const codeInput = this.container.querySelector('.code-input input');
+    const codeImg = this.container.querySelector('.code-monkey');
     codeInput.addEventListener('input', (e) => {
       const code = e.target.value;
       if (code.length == 5) {
@@ -18,12 +18,16 @@ export class ConfirmCodePage {
 					.then((result) => {
             console.log('receive result', result);
             codeInput.parentElement.classList.remove('error');
-            codeInput.parentElement.querySelector('.placeholder').textContent = 'Code';
+            codeInput.parentElement.classList.add('correct');
+            codeInput.parentElement.querySelector('.placeholder').textContent = 'Code is correct';
+            window.location.hash = '#password';
 						return result;
 					})
 					.catch((error) => {
             console.error('catch error', error);
+            codeImg.src = './assets/img/Login_7_Code_Invalid@2x_Monkey.png';
             codeInput.parentElement.classList.add('error');
+            codeInput.parentElement.classList.remove('correct');
             codeInput.parentElement.querySelector('.placeholder').textContent = 'Invalid Code';
 						throw error;
 					});
@@ -31,7 +35,7 @@ export class ConfirmCodePage {
     })
   }
 
-  static markup() {
+  markup() {
     return `
       <section class="code-section">
         <div class="code-container">

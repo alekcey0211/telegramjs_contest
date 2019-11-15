@@ -12,12 +12,38 @@ export class Client {
 				return this.client.send(request);
 			}
 
+			getAuthorizationState() {
+				return this.send({
+					'@type': 'getAuthorizationState'
+				})
+			}
+
+			getContacts() {
+				return this.send({
+					'@type': 'getContacts'
+				})
+			}
+
+			getUser(userId) {
+				return this.send({
+					'@type': 'getUser',
+					user_id: userId
+				})
+			}
+
 			checkAuthenticationCode(code) {
 				return this.send({
 					'@type': 'checkAuthenticationCode',
 					code: code,
 					first_name: 'A',
 					last_name: 'B'
+				})
+			}
+
+			checkAuthenticationPassword(password) {
+				return this.send({
+					'@type': 'checkAuthenticationPassword',
+					password: password
 				})
 			}
 
