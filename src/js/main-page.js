@@ -4,7 +4,6 @@ export class MainPage {
 		this.usersList = [];
 		this.chatsList = [];
 		this.render();
-		// this.getContacts();
 		this.getChats();
 		this.getMe();
 	}
@@ -20,8 +19,6 @@ export class MainPage {
 					.getUserFullInfo(this.currentProfile.id)
 					.then((result) => {
 						this.currentProfileInfo = result;
-						console.log(this.currentProfile);
-						console.log(this.currentProfileInfo);
 						this.render();
 					})
 					.catch((error) => {
@@ -74,14 +71,37 @@ export class MainPage {
 		client
 			.getChats()
 			.then((result) => {
-				this.loadChats(result['chat_ids']).then((result) => {
-					this.chatsList = result;
-					console.log(this.chatsList[0].last_message.content.text.text);
-					this.render();
-				});
+				this.loadChats(result['chat_ids'])
+					.then((result) => {
+						this.chatsList = result;
+					})
+					.then((result) => {
+						client
+							.openChat(this.chatsList[0].id)
+							.then(() => {
+									this.getChatHistory(this.chatsList[0].id);
+							})	
+							.catch((error) => {
+								throw error;
+							})
+						this.render();
+					});
 				return result;
 			})
 			.catch((error) => {
+				throw error;
+			});
+	}
+
+	getChatHistory(chatId) {
+		client
+			.getChatHistory(chatId)
+			.then((result) => {
+				console.log('Get result 1', result);
+				return result;
+			})
+			.catch((error) => {
+				console.error('Catch error', error);
 				throw error;
 			});
 	}
