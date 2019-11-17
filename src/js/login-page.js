@@ -5,7 +5,7 @@ export class LoginPage {
 	init(container) {
 		this.container = container;
 		this.showButton = false;
-		this.phoneNumber = "";
+		this.phoneNumber = '';
 		this.render();
 	}
 
@@ -26,12 +26,12 @@ export class LoginPage {
 		// input
 		const loginInputContainer = this.container.querySelector('.login-input');
 		const loginInput = loginInputContainer.querySelector('input[type="tel"]');
-	
+
 		if (loginInputContainer) {
 			loginInput.setAttribute('tel-code', '+1');
 			loginInput.addEventListener('input', (e) => {
 				this.phoneNumber = e.target.value;
-			})
+			});
 		}
 
 		// button
@@ -41,14 +41,24 @@ export class LoginPage {
 			loginButton.onclick = (e) => {
 				client.inputPhone = loginInput.value;
 				const phoneNumber = parseTelephoneNumber(loginInput.value);
+				loginButton.classList.add('disabled');
+				loginButton.disabled = 'true';
+				loginButton.innerHTML = 'Loading...';
 				client
 					.setAuthenticationPhoneNumber(phoneNumber)
 					.then((result) => {
 						console.log('receive result', result);
+						loginInputContainer.classList.remove('error');
+						loginInputContainer.classList.add('correct');
+						window.location.hash = '#confirm-code';
 						return result;
 					})
 					.catch((error) => {
 						console.error('catch error', error);
+						loginInputContainer.classList.add('error');
+						loginButton.classList.remove('disabled');
+						loginButton.disabled = 'false';
+						loginButton.innerHTML = 'NEXT';
 						throw error;
 					});
 			};
@@ -60,16 +70,17 @@ export class LoginPage {
 					loginButton.click();
 				}
 			}
-		})
+		});
+
 		// костыль
 		loginInput.addEventListener('input', (e) => {
 			const number = parseTelephoneNumber(e.target.value);
 			if (isValidPhoneNumber(number)) {
-				loginButtonContainer.classList.remove('hide')
+				loginButtonContainer.classList.remove('hide');
 			} else {
-				loginButtonContainer.classList.add('hide')
+				loginButtonContainer.classList.add('hide');
 			}
-		})
+		});
 
 		// select
 		const loginSelect = this.container.querySelector('.tl-select');
@@ -127,7 +138,7 @@ export class LoginPage {
 		});
 	}
 
-	markup({phoneNumber}) {
+	markup({ phoneNumber }) {
 		return `
       <section class="login-section">
         <div class="login-container">
@@ -153,7 +164,7 @@ export class LoginPage {
             <span class="checkmark"></span>
           </label>
           <div class="login-button hide">
-            <a href="#confirm-code" class="tl-button tl-full-button">Next</a>
+            <button class="tl-button tl-full-button">Next</button>
           </div>
         </div>
 			</section>

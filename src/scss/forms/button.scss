@@ -9,6 +9,10 @@
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
+
+	&.disabled {
+		background-color: $tl-dark-blue;
+	}
 }
 
 .tl-full-button {
