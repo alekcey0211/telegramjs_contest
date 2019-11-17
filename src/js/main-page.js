@@ -79,7 +79,10 @@ export class MainPage {
 						client
 							.openChat(this.chatsList[0].id)
 							.then(() => {
+								this.getChatHistory(this.chatsList[0].id);
+								setTimeout(() => {
 									this.getChatHistory(this.chatsList[0].id);
+								}, 1000);
 							})	
 							.catch((error) => {
 								throw error;
