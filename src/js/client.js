@@ -1,6 +1,11 @@
 import TdClient from './tdweb.js';
 import { apiConfig, options } from './config';
 import { getOSName, getBrowser, isValidPhoneNumber } from './utils';
+import Cookies from 'universal-cookie';
+import {
+	CHAT_SLICE_LIMIT
+} from './constants.js';
+import dateFormat from 'dateformat';
 
 export class Client {
 			constructor() {
@@ -23,6 +28,57 @@ export class Client {
 					'@type': 'getContacts'
 				})
 			}
+
+			getMessageDate(message) {
+				const date = new Date(message.date * 1000);
+		
+				const dayStart = new Date();
+				dayStart.setHours(0, 0, 0, 0);
+				if (date > dayStart) {
+						return dateFormat(date, 'H:MM');
+				}
+		
+				const now = new Date();
+				const day = now.getDay();
+				const weekStart = now.getDate() - day + (day === 0 ? -6 : 1);
+				const monday = new Date(now.setDate(weekStart));
+				if (date > monday) {
+						return dateFormat(date, 'ddd');
+				}
+		
+				return dateFormat(date, 'd.mm.yyyy');
+		}
+
+			getChats() {
+				let offsetOrder = '9223372036854775807'; // 2^63 - 1
+				let offsetChatId = 0;
+				return this.send({
+						'@type': 'getChats',
+						offset_chat_id: offsetChatId,
+						offset_order: offsetOrder,
+						limit: CHAT_SLICE_LIMIT
+				})
+			}
+
+			getChat(chatId) {
+				return this.send({
+					'@type': 'getChat',
+					chat_id: chatId
+				})
+			}
+
+			loadClientData() {
+        const cookies = new Cookies();
+        const clientData = new Map();
+        try {
+            const data = cookies.get('clientData');
+            Object.keys(data).forEach(key => {
+                clientData.set(Number(key), data[key]);
+            });
+        } catch {}
+
+        this.clientData = clientData;
+    };
 
 			getUser(userId) {
 				return this.send({
