@@ -87,6 +87,19 @@ export class Client {
 				})
 			}
 
+			getUserFullInfo(userId) {
+				return this.send({
+					'@type': 'getUserFullInfo',
+					user_id: userId
+				})
+			}
+
+			getMe() {
+				return this.send({
+					'@type': 'getMe'
+				})
+			}
+
 			checkAuthenticationCode(code) {
 				return this.send({
 					'@type': 'checkAuthenticationCode',

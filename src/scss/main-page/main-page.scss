@@ -1,6 +1,10 @@
 .main-section {
   display: flex;
   overflow: hidden;
+
+  &.show-profile .profile-block {
+    position: relative;
+  }
 }
 
 .left-block, .right-block {
@@ -43,7 +47,7 @@
       pointer-events: none;
     }
 
-    &:hover {
+    &:hover, &.selected {
       background-color: $tl-gray;
     }
 
@@ -104,10 +108,13 @@
 .profile-block {
   overflow: hidden;
   transition: all .5s ease;
-  margin-right: -350px;
+  position: absolute;
+  right: -350px;
+  min-width: 350px;
 
   &.show {
-    margin-right: 0;
+    position: relative;
+    right: 0;
   }
 
   &__nav {

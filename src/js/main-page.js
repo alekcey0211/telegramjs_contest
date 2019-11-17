@@ -6,6 +6,33 @@ export class MainPage {
 		this.render();
 		// this.getContacts();
 		this.getChats();
+		this.getMe();
+	}
+
+	getMe() {
+		client
+			.getMe()
+			.then((result) => {
+				this.currentProfile = result;
+			})
+			.then((result) => {
+				client
+					.getUserFullInfo(this.currentProfile.id)
+					.then((result) => {
+						this.currentProfileInfo = result;
+						console.log(this.currentProfile);
+						console.log(this.currentProfileInfo);
+						this.render();
+					})
+					.catch((error) => {
+						console.error('Catch error', error);
+						throw error;
+					});
+			})
+			.catch((error) => {
+				console.error('Catch error', error);
+				throw error;
+			});
 	}
 
 	loadContacts(usersIdList) {
@@ -61,6 +88,13 @@ export class MainPage {
 
 	render() {
 		this.container.innerHTML = this.markup();
+		const profileBlock = this.container.querySelector('.profile-block');
+		if (profileBlock) {
+			const closeProfileButton = this.container.querySelector('.profile-block__nav .close');
+			closeProfileButton.addEventListener('click', (e) => {
+				profileBlock.classList.toggle('show');
+			});
+		}
 	}
 
 	markup() {
@@ -74,15 +108,15 @@ export class MainPage {
 									<img class="item-photo" src="./assets/img/logo.png" alt="photo">
 									<div class="item-content">
 										<p class="item-content__title">
-											${(chat.title.length > 20 ? chat.title.substring(0, 20) + '...' : chat.title)}
+											${chat.title.length > 20 ? chat.title.substring(0, 20) + '...' : chat.title}
 										</p>
 										<p class="item-content__last-message">
 											${
-												(chat.last_message.content.text
-													? (chat.last_message.content.text.text.length > 35
-														? chat.last_message.content.text.text.substring(0, 35) + '...' 
-														: chat.last_message.content.text.text)
-													: '')
+												chat.last_message.content.text
+													? chat.last_message.content.text.text.length > 35
+														? chat.last_message.content.text.text.substring(0, 35) + '...'
+														: chat.last_message.content.text.text
+													: ''
 											}
 										</p>
 									</div>
@@ -103,11 +137,69 @@ export class MainPage {
         
       </aside>
       <div class="center-block">
-        
       </div>
-      <aside class="right-block">
-
-      </aside>
+				${
+					this.currentProfile && this.currentProfileInfo
+						? `
+					<aside class="right-block profile-block show">
+						<div class="profile-block__nav">
+							<button class="close">
+								<img src="./assets/img/close_svg.svg" alt="">
+							</button>
+							<div class="title">
+								<p>Info</p>
+							</div>
+							<button class="more">
+								<img src="./assets/img/more_svg.svg" alt="">
+							</button>
+						</div>
+						<div class="profile-block__photo">
+							<img src="./assets/img/logo.png" alt="">
+						</div>
+						<div class="profile-block__name">
+							<h2 class="fio">${this.currentProfile.first_name} ${this.currentProfile.last_name}</h2>
+							<p class="status ${this.currentProfile.status['@type'] === 'userStatusOffline' ? '' : 'active'}">
+								${this.currentProfile.status['@type'] === 'userStatusOffline' ? 'offline' : 'online'}
+							</p>
+						</div>
+					 <div class="profile-block__info">
+					 <div class="item">
+						 <img src="./assets/img/info_svg.svg" alt="" class="icon">
+						 <div class="inner">
+							 <p class="value">${this.currentProfileInfo.bio}</p>
+							 <p class="description">Bio</p>
+						 </div>
+					 </div>
+					 <div class="item">
+						 <img src="./assets/img/username_svg.svg" alt="" class="icon">
+						 <div class="inner">
+							 <p class="value">${this.currentProfile.username}</p>
+							 <p class="description">Username</p>
+						 </div>
+					 </div>
+					 <div class="item">
+						 <img src="./assets/img/phone_svg.svg" alt="" class="icon">
+						 <div class="inner">
+							 <p class="value">+${this.currentProfile.phone_number}</p>
+							 <p class="description">Phone</p>
+						 </div>
+					 </div>
+					 <div class="item">
+						 <label class="tl-checkbox">
+							 <input type="checkbox" checked>
+							 <span class="checkmark"></span>
+						 </label>
+						 <div class="inner">
+							 <p class="value">Notifications</p>
+							 <p class="description">Enabled</p>
+						 </div>
+					 </div>
+				 </div>
+			 </aside>
+					 `
+						: ''
+				}
+        
     `;
 	}
 
