@@ -22,11 +22,17 @@ export class MainPage {
 						this.render();
 					})
 					.catch((error) => {
-						console.error('Catch error', error);
+						if (error.code === 401) {
+							window.location.hash = '#login';
+						}
+						console.error('Catch error', error.code);
 						throw error;
 					});
 			})
 			.catch((error) => {
+				if (error.code === 401) {
+					window.location.hash = '#login';
+				}
 				console.error('Catch error', error);
 				throw error;
 			});
@@ -46,13 +52,23 @@ export class MainPage {
 		client
 			.getContacts()
 			.then((result) => {
-				this.loadContacts(result['user_ids']).then((res) => {
+				this.loadContacts(result['user_ids'])
+				.then((res) => {
 					this.usersList = res;
 					this.render();
+				})
+				.catch((error) => {
+					if (error.code === 401) {
+						window.location.hash = '#login';
+					}
+					throw error;
 				});
 				return result;
 			})
 			.catch((error) => {
+				if (error.code === 401) {
+					window.location.hash = '#login';
+				}
 				throw error;
 			});
 	}
@@ -85,6 +101,9 @@ export class MainPage {
 								}, 1000);
 							})	
 							.catch((error) => {
+								if (error.code === 401) {
+									window.location.hash = '#login';
+								}
 								throw error;
 							})
 						this.render();
@@ -92,6 +111,9 @@ export class MainPage {
 				return result;
 			})
 			.catch((error) => {
+				if (error.code === 401) {
+					window.location.hash = '#login';
+				}
 				throw error;
 			});
 	}

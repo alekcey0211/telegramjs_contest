@@ -346,6 +346,43 @@ main section {
 .not-visible {
   visibility: hidden; }
 
+.tl-loader-spinner {
+  display: inline-block;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+  .tl-loader-spinner div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    -webkit-animation: tl-loader-spinner 1.2s linear infinite;
+            animation: tl-loader-spinner 1.2s linear infinite;
+    border-color: #fff #fff #fff transparent; }
+
+@-webkit-keyframes tl-loader-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes tl-loader-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
 .tl-button {
   padding: 16px;
   text-align: center;
@@ -356,7 +393,10 @@ main section {
   text-transform: uppercase;
   cursor: pointer;
   display: block;
-  text-decoration: none; }
+  text-decoration: none;
+  position: relative; }
+  .tl-button.disabled {
+    background-color: #4797E2; }
 
 .tl-full-button {
   background-color: #4EA4F6;
@@ -465,14 +505,14 @@ main section {
     border-color: #E53935 !important;
     caret-color: #E53935 !important;
     border-width: 2px !important; }
-    .tl-input.error input .placeholder {
-      color: #E53935; }
+  .tl-input.error .placeholder {
+    color: #E53935; }
   .tl-input.correct input {
     border-color: #26962F !important;
     caret-color: #26962F !important;
     border-width: 2px !important; }
-    .tl-input.correct input .placeholder {
-      color: #26962F; }
+  .tl-input.correct .placeholder {
+    color: #26962F; }
   .tl-input .right-icon {
     position: absolute;
     right: 10px;
