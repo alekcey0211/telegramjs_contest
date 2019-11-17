@@ -9,6 +9,7 @@
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
+	position: relative;
 
 	&.disabled {
 		background-color: $tl-dark-blue;

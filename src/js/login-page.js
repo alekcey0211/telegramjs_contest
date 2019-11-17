@@ -38,12 +38,17 @@ export class LoginPage {
 		const loginButtonContainer = document.querySelector('.login-button');
 		if (loginButtonContainer) {
 			const loginButton = loginButtonContainer.querySelector('.tl-button');
+			const loginButtonText = loginButtonContainer.querySelector('.tl-button .text');
+			const loginButtonLoader = loginButtonContainer.querySelector('.tl-button .tl-loader-spinner');
+			
 			loginButton.onclick = (e) => {
 				client.inputPhone = loginInput.value;
 				const phoneNumber = parseTelephoneNumber(loginInput.value);
 				loginButton.classList.add('disabled');
+				loginButtonText.classList.add('hide');
+				loginButtonLoader.classList.remove('hide');
 				loginButton.disabled = 'true';
-				loginButton.innerHTML = 'Loading...';
+				
 				client
 					.setAuthenticationPhoneNumber(phoneNumber)
 					.then((result) => {
@@ -57,8 +62,9 @@ export class LoginPage {
 						console.error('catch error', error);
 						loginInputContainer.classList.add('error');
 						loginButton.classList.remove('disabled');
+						loginButtonText.classList.remove('hide');
+						loginButtonLoader.classList.add('hide');
 						loginButton.disabled = 'false';
-						loginButton.innerHTML = 'NEXT';
 						throw error;
 					});
 			};
@@ -164,7 +170,10 @@ export class LoginPage {
             <span class="checkmark"></span>
           </label>
           <div class="login-button hide">
-            <button class="tl-button tl-full-button">Next</button>
+						<button class="tl-button tl-full-button">
+							<span class="text">Next</span>
+							<div class="tl-loader-spinner hide"><div></div></div>
+						</button>
           </div>
         </div>
 			</section>
