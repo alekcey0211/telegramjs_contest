@@ -21,7 +21,6 @@ export class LoginPage {
 
 	render() {
 		this.container.innerHTML = this.markup(this);
-		window.dispatchEvent(new CustomEvent('onRender'));
 
 		// input
 		const loginInputContainer = this.container.querySelector('.login-input');
