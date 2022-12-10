@@ -31,7 +31,7 @@
     "debug": "~2.6.9",
     "easy-telegram-mtproto": "^1.0.4",
     "escape-regex": "^1.0.7",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "fs": "0.0.1-security",
     "messaging-api-telegram": "^0.8.2",
     "morgan": "~1.9.1",
